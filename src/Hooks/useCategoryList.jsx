@@ -4,13 +4,18 @@ import { useEffect, useState } from "react";
 const useCategoryList = () => {
   const [categoryList, setCategoryList] = useState([]);
 
+  const apiKey = process.env.REACT_APP_API_KEY;
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
 
+    // console.log(process.env.BACKEND_URL);
+
     const getCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/categories", {
+        // let url = process.env.BACKEND_URL;
+        const response = await axios.get(`${apiKey}/categories`, {
           signal,
         });
         const data = response.data;

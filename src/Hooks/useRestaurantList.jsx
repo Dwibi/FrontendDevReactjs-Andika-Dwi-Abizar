@@ -6,6 +6,7 @@ const useRestaurantList = () => {
   const [searchParams, setSearchParams] = useSearchParams({
     isOpenOnly: false,
   });
+  const apiKey = process.env.REACT_APP_API_KEY;
   const [originalRestaurantsList, setOriginalRestaurantsList] = useState([]);
   const isOpenOnly = searchParams.get("isOpenOnly") === "true";
   const minPrice = searchParams.get("minPrice") || "";
@@ -19,7 +20,7 @@ const useRestaurantList = () => {
 
     const getRestaurants = async () => {
       try {
-        let url = "http://localhost:5000/restaurants?_expand=category";
+        let url = `${apiKey}/restaurants?_expand=category`;
         if (categoryId) url += `&categoryId_like=${categoryId}`;
         setIsLoading(true);
         const response = await axios.get(url, { signal });

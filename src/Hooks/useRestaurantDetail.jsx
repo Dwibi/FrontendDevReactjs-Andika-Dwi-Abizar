@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 const useRestaurantDetail = () => {
   const [restaurant, setrestaurant] = useState({});
   const { id } = useParams();
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -13,7 +14,7 @@ const useRestaurantDetail = () => {
     const getCategories = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/restaurants/${id}?_embed=reviews`,
+          `${apiKey}/restaurants/${id}?_embed=reviews`,
           {
             signal,
           }
