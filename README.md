@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Demo
+
+http://13.213.12.214/ (only valid until 25 Nov 2023)
+
 ## React JS Version
 
 18.2.0
