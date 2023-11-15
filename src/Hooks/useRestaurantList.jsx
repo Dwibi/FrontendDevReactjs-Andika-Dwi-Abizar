@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import { config } from "../config";
 
 const useRestaurantList = () => {
   const [searchParams, setSearchParams] = useSearchParams({
     isOpenOnly: false,
   });
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = config.apiKey;
   const [originalRestaurantsList, setOriginalRestaurantsList] = useState([]);
   const isOpenOnly = searchParams.get("isOpenOnly") === "true";
   const minPrice = searchParams.get("minPrice") || "";
@@ -39,7 +40,7 @@ const useRestaurantList = () => {
     return () => {
       controller.abort();
     };
-  }, [categoryId]);
+  }, [categoryId, apiKey]);
 
   const handleToggleOpenOnly = () => {
     setSearchParams((prev) => {

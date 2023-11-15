@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { config } from "../config";
 
 const useRestaurantDetail = () => {
   const [restaurant, setrestaurant] = useState({});
   const { id } = useParams();
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const apiKey = config.apiKey;
 
   useEffect(() => {
     const controller = new AbortController();
@@ -32,7 +33,7 @@ const useRestaurantDetail = () => {
     return () => {
       controller.abort();
     };
-  }, [id]);
+  }, [id, apiKey]);
 
   return {
     restaurant,
